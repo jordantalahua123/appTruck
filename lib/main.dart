@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'src/core/config/app_config.dart'; 
 import 'src/data/database/app_database.dart';
 import 'src/domain/services/location_service.dart';
@@ -13,7 +14,10 @@ import 'src/presentation/providers/driver_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Crear instancias de serviciosfx
+  // Cargar variables de entorno
+  await dotenv.load(fileName: ".env");
+
+  // Crear instancias de servicios
   final database = AppDatabase();
   final locationService = LocationService();
   final routeService = RouteService();

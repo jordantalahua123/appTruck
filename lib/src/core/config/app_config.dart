@@ -1,20 +1,22 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConfig {
-  static const String appName = 'InDrive Clone';
-  static const String osrmBaseUrl = 'https://router.project-osrm.org/route/v1/driving/';
+  static String get appName => dotenv.env['APP_NAME'] ?? 'App';
+  static String get osrmBaseUrl => dotenv.env['OSRM_BASE_URL'] ?? 'https://router.project-osrm.org/route/v1/driving/';
   
   // Configuración de tiempos
-  static const int defaultTimeoutMarginMinutes = 30;
-  static const int gpsUpdateIntervalSeconds = 10;
+  static int get defaultTimeoutMarginMinutes => int.parse(dotenv.env['DEFAULT_TIMEOUT_MARGIN_MINUTES'] ?? '15');
+  static int get gpsUpdateIntervalSeconds => int.parse(dotenv.env['GPS_UPDATE_INTERVAL_SECONDS'] ?? '5');
   
   // Configuración del mapa
-  static const double initialMapZoom = 13.0;
-  static const double defaultLatitude = -2.1709979; // Guayaquil
-  static const double defaultLongitude = -79.9223592;
+  static double get initialMapZoom => double.parse(dotenv.env['INITIAL_MAP_ZOOM'] ?? '10.0');
+  static double get defaultLatitude => double.parse(dotenv.env['DEFAULT_LATITUDE'] ?? '0.0');
+  static double get defaultLongitude => double.parse(dotenv.env['DEFAULT_LONGITUDE'] ?? '0.0');
   
   // Configuración de la base de datos
-  static const String databaseName = 'indrive_clone.db';
-  static const int databaseVersion = 1;
+  static String get databaseName => dotenv.env['DATABASE_NAME'] ?? 'app.db';
+  static int get databaseVersion => int.parse(dotenv.env['DATABASE_VERSION'] ?? '1');
   
-  // URL del servidor de sockets en Vercel
-  static const String socketUrl = 'https://backend-socket-one.vercel.app';
+  // URL del servidor de sockets
+  static String get socketUrl => dotenv.env['SOCKET_URL'] ?? 'http://localhost:3000';
 } 
